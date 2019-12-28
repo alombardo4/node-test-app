@@ -1,0 +1,24 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: set up nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: install cli
+      run: |
+        npm i -g node-atlanta-cli
+    - name: Package
+      run: |
+        my-cli package
+    - name: Test
+      run: |
+        my-cli test
